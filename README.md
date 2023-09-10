@@ -49,7 +49,8 @@ Edit your notes manually.
 Organize your notes as needed by drag and drop.
 
 ### Managing Categories
-Create, edit, and delete categories to organize your notes efficiently.
+Create categories by sating New Category ... 
+Edit and delete categories to organize your notes efficiently.
 Assign colors to categories for easy identification.
 
 ### Voice Transcription
