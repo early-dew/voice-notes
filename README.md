@@ -1,6 +1,7 @@
 # My Voice Notes App
 
 Welcome to My Voice Notes App! An intuitive React-based web app for note creation, management, and organization using voice commands and drag-and-drop functionality
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -40,7 +41,7 @@ To get started with My Voice Notes App, follow these steps:
 
 5. Open your browser and access the app at http://localhost:3000
 
-### Usage
+## Usage
 
 ### Creating Notes
 Add new notes using voice commands
