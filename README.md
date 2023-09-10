@@ -55,4 +55,4 @@ Assign colors to categories for easy identification.
 
 ### Voice Transcription
 Click the microphone icon to start voice transcription.
-Your speech will be transcribed into text notes. 
+Your speech will be transcribed into text notes and category names.
