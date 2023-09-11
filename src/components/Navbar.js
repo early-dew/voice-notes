@@ -30,7 +30,10 @@ const Navbar = () => {
             </button>
             <div className="info-text">
               <p>How to use</p>
-              <p>Click Play and say New Category “Name” to create a category</p>
+              <div className="info-instructions">
+                <p>Click <span> Play</span> and say <span>“New Category ... ”</span> to create a category.</p>
+                <p>Click <span> Stop</span> to stop recording.</p>
+              </div>
             </div>
           </div>
         )}

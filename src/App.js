@@ -17,6 +17,7 @@ mic.continuous = true
 mic.interimResults = true
 mic.lang = 'en-US'
 
+
 function App() {
 
   const [isListening, setIsListening] = useState(false)
@@ -79,7 +80,7 @@ function App() {
     return randomColor
   };
 
-
+  //Data logs
   useEffect(() => {
     console.log('selected', selectedCategory);
     console.log('stored', storedSelectedCategory)
@@ -172,10 +173,12 @@ function App() {
   }
 
 
+  // Processing voiced transcriptions
   const processTranscript = () => {
     const transcript = micTranscript.trim()
     setMicTranscript(transcript)
     if (transcript.startsWith('new category')) {
+      // add new category with the voice command 'new category'
       addNewCategory()
     } else if (!storedSelectedCategory && categories.length > 0) {
       // if no category is selectedCategory, add note to the first category

@@ -48,21 +48,21 @@ To get started with My Voice Notes App, follow these steps:
   ```
   npm start
   ```
-  
+
 5. Open your browser and access the app at http://localhost:3000
 
 
 ## Usage
 
 ### Creating Notes
-Add new notes using voice commands
-Edit your notes manually. 
-Organize your notes as needed by drag and drop.
+- Add new notes using voice commands
+- Edit your notes manually. 
+- Organize your notes as needed by drag and drop.
 
 ### Managing Categories
-Create categories by saying New Category ... 
-Edit and delete categories to organize your notes efficiently.
-Assign colors to categories for easy identification.
+- Create categories by saying 'New Category ... '
+- Edit and delete categories to organize your notes efficiently.
+- Assign colors to categories for easy identification.
 
 ### Voice Transcription
 Click the microphone icon to start voice transcription.
