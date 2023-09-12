@@ -1,6 +1,37 @@
-/* NAVBAR*/
+/* ========================================================= General styles */
+
+
+h1 {
+  text-align: center;
+  font-family: var(--fonts-heading-main);
+  text-transform: capitalize;
+  margin: 1rem 0;
+  }
+
+h3 {
+  font-family: var(--fonts-heading-category);  
+  font-weight: 500;
+  }
+
+/* remove button initial style */
+button {
+background: none;
+border: none;
+padding: 0; 
+cursor: pointer;
+outline: none; 
+}
+
+button:hover {
+  opacity: 0.8;
+  transition: background-color 0.3s;
+}
+
+
+/* ========================================================= NAVBAR*/
 
 .navbar {
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +40,7 @@
   color: rgb(116, 116, 116);
   }
 
-.info-container {
+.info-holder {
   position: relative;
   display: inline-block;
 }
@@ -78,7 +109,7 @@ background: #E6F4F4;
 text-transform: uppercase;
 }
 
-/* AUDIO PLAYER */
+/* ========================================================= AUDIO PLAYER */
      
 .audio-wrapper{
   display: flex;
@@ -108,7 +139,6 @@ text-transform: uppercase;
   max-width: 800px;
   }
  
-
 .transcript-wrapper.active {
   visibility: visible;
   background-color: white;
@@ -140,55 +170,73 @@ cursor: pointer;
 }   
 
   
-/* MY NOTES */
-
-h1 {
-  text-align: center;
-  font-family: var(--fonts-heading-main);
-  text-transform: capitalize;
-  margin: 1rem 0;
-  }
-
-h3 {
-  font-family: var(--fonts-heading-category);  
-  font-weight: 500;
-  }
-
-/* remove button initial style */
-button {
-background: none;
-border: none;
-padding: 0; 
-cursor: pointer;
-outline: none; 
-}
+/* ========================================================= CATEGORIES */
 
 .centered {
   max-width: auto;
   font-size: calc(10px + 1vmin);
+   }
+
+
+.categories-collection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1em;
+  padding: 0 16px;
+  max-width:1500px;
+   margin: 0 auto;
+     }
+
+ @media (max-width: 480px) {
+  .categories-collection {
+   padding: 0 16px;
+   gap: 4px;
+}
+
+.navbar {
+  padding: 4px 8px;
+}
+  } 
+
+
+   @media (max-width: 1277px) {
+  .categories-collection {
+  padding: 0 24px;
+  gap: 8px;
+   }
+
+  .info-button {
+    height:36px;
+    width:36px;
   }
 
-.categories-list {
-  display: flex;
-  justify-content: center; 
-  flex-wrap: wrap;
-  gap: 10px;
-  flex-grow: 4; 
-  padding: 0 10%;
+  .info-button img{
+    height:32px;
+    width:32px;
   }
+
+  .navbar {
+      padding: 8px 24px; 
+  }
+
+  .logo img {
+    height:40px;
+  }
+
+} */
 
 
 .category-style {
 list-style: none;
-flex-basis: calc(25% - 10px);
-max-width: calc(25% - 8px); 
-text-align: center;
 margin-bottom: 1em;
 text-align: left;
 box-sizing: border-box;
-  }
+}
+
 
 .category {
+  max-width: 100%;
+  min-width:300px;
   display: flex;
   flex-direction: column;
   padding: 12px; 
@@ -201,7 +249,8 @@ box-sizing: border-box;
   border-right: 5px solid #333;
   border-bottom: 5px solid #333;
   border-left: 2px solid #333;
-  }
+    }
+
 
 .category.selected-category-style {
   border-top: 4px solid var(--dark-color-selected);
@@ -215,21 +264,21 @@ box-sizing: border-box;
   font-weight: 700;
 }
 
-.category.selected-category-style .notes-container {
+.category.selected-category-style .notes-holder {
   background: var(--fonts-background-light);
 }
 
-/* NOTES */
+/* ========================================================= NOTES */
 
-.notes-container{
+.notes-holder{
   display: flex;
   justify-content: space-between;
   border-radius: .18em;
   padding: .5em .5em .5em .5em;
-  border: 2px solid #333;
+  border: 2px solid var(--dark-color-main);
   background: rgba(255, 255, 255, 0.70);
   margin-bottom: 8px;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   }
 
 .note-icons-placeholder{
@@ -244,6 +293,7 @@ box-sizing: border-box;
   gap: 8px; 
   align-items: center;
   }
+
 
 .note-content {
   text-align: left;
@@ -275,9 +325,9 @@ box-sizing: border-box;
   padding-left: 8px;
 }
 
-/* CHECKMARK */
+/* ========================================================= CHECKMARK */
 
-.checkbox-container {
+.checkbox-holder {
   vertical-align: middle;
   position: relative;
   padding-left: 32px;
@@ -290,7 +340,7 @@ box-sizing: border-box;
   user-select: none;
 }
 
-.checkbox-container input{
+.checkbox-holder input{
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -309,7 +359,7 @@ box-sizing: border-box;
   border-radius: 2px;
 }
 
-.checkbox-container input:checked ~ .checkmark {
+.checkbox-holder input:checked ~ .checkmark {
   background-color: #000;
 }
 
@@ -319,11 +369,11 @@ box-sizing: border-box;
   display: none;
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
+.checkbox-holder input:checked ~ .checkmark:after {
   display: block;
 }
 
-.checkbox-container .checkmark:after {
+.checkbox-holder .checkmark:after {
   left: 6px;
   top: 2px;
   width: 5px;
@@ -338,4 +388,25 @@ box-sizing: border-box;
 
    .strikethrough {
   text-decoration: line-through;
+}
+
+
+/* ========================================================= FOOTER */
+
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark-color-main);
+    height: auto;
+    width: 100vw;
+    padding: 2em 0 2em 0;
+    color: #fff;
+    text-align: center;
+}
+
+footer p {
+  color: var(--fonts-background-light);
+  padding-top: 8px;
 }

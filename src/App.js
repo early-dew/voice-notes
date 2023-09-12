@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd';
 import Navbar from './components/Navbar'
 import CategoryItem from './components/CategoryItem'
+import Footer from './components/Footer'
 // import Notification from './components/Notification';
 import './App.css';
 
@@ -474,11 +475,11 @@ function App() {
             </button>
           </div>
         </div>
-        <div className="container">
+        <div className="my-notes-wrapper">
           <h1>my notes</h1>
-          <div className="categories-container">
+          <div className="categories-wrapper">
             <DragDropContext onDragEnd={handleOnDragEnd}>
-              <ul className="categories-list">
+              <ul className="categories-collection">
                 {categories.map((category) => (
                   <CategoryItem
                     key={category.id}
@@ -505,6 +506,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 

@@ -20,7 +20,7 @@ const NoteItem = React.memo(({
 
   return (
 
-    <li className="notes-container">
+    <li className="notes-holder">
       {editingNoteId === note.id ? (
         <textarea
           className={`edit-input ${editingNoteId === note.id ? 'editing' : ''}`}
@@ -35,7 +35,7 @@ const NoteItem = React.memo(({
         <>
           <div className="note-content">
             {isSelected ? (
-              <label className="checkbox-container">
+              <label className="checkbox-holder">
                 <input
                   type="checkbox"
                   onChange={() => handleChecked(note.id, note.content)}

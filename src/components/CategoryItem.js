@@ -27,7 +27,7 @@ const CategoryItem = React.memo(({
 
   return (
     <div className="category-style">
-      <Droppable droppableId={`${category.id}`} type="group">
+      <Droppable droppableId={`${category.id}`} type="notes">
         {(provided) => (
           <div
             ref={provided.innerRef}
