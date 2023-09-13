@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd';
 import Navbar from './components/Navbar'
+import Notification from './components/Notification'
 import CategoryItem from './components/CategoryItem'
 import Footer from './components/Footer'
-// import Notification from './components/Notification';
 import './App.css';
 
 
@@ -31,6 +31,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [usedColors, setUsedColors] = useState([])
   const [storedSelectedCategory, setStoredSelectedCategory] = useState(selectedCategory)
+  const [showNotification, setShowNotification] = useState(false)
   const [categoryColors, setCategoryColors] = useState({
     pink: '#FFBFE2',
     yellow: '#FBD73B',
@@ -276,8 +277,13 @@ function App() {
   }, [selectedCategory])
 
 
-  const deleteCategory = (categoryId) => {
+  const handleCancelDelete = () => {
+    setShowNotification(false)
+  };
 
+  const handleConfirmDelete = (categoryId) => {
+
+    console.log(categoryId, 'handleConfirmDelete catID')
     const updatedCategories = categories.filter(cat => cat.id !== categoryId)
     const newSelectedCategory = updatedCategories.length > 0 ? updatedCategories[0] : null;
     const updatedNotes = savedNotes.filter(note => note.categoryId !== categoryId)
@@ -303,9 +309,28 @@ function App() {
       setSavedNotes([])
     }
 
+    setShowNotification(false)
+
     window.localStorage.setItem('MY_CATEGORIES_LIST', JSON.stringify(updatedCategories))
     window.localStorage.setItem('MY_SAVED_NOTES_LIST', JSON.stringify(updatedNotes))
     window.localStorage.setItem('USED_COLORS', JSON.stringify(colorToDelete.color));
+
+
+  };
+
+  const deleteCategory = (categoryId, onConfirm, onCancel) => {
+
+    setShowNotification(true)
+
+    if (onConfirm) {
+      handleConfirmDelete(categoryId)
+
+    }
+
+    if (onCancel) {
+      handleCancelDelete()
+    }
+
   };
 
 
@@ -455,10 +480,16 @@ function App() {
   }, [editingNoteId, selectedCategory]);
 
 
-
   return (
     <>
       <Navbar />
+      {showNotification && storedSelectedCategory && (
+        <Notification
+          message={`Are you sure you want to delete the category ${storedSelectedCategory.name.toUpperCase()}?`}
+          onCancel={handleCancelDelete}
+          onConfirm={() => handleConfirmDelete(storedSelectedCategory.id)}
+        />
+      )}
       <div className="centered">
         <div className="audio-wrapper">
           <div className={`transcript-wrapper ${micTranscript ? 'active' : ''}`}>
@@ -499,6 +530,9 @@ function App() {
                     handleCategoryClick={handleCategoryClick}
                     isListening={isListening}
                     storedSelectedCategory={storedSelectedCategory}
+                    showNotification={showNotification}
+                    handleCancelDelete={handleCancelDelete}
+                    handleConfirmDelete={handleConfirmDelete}
                   />
                 ))}
               </ul>

@@ -1,5 +1,6 @@
 import React from 'react'
 import NoteItem from './NoteItem';
+import Notification from './Notification';
 import { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
@@ -17,7 +18,9 @@ const CategoryItem = React.memo(({
   removeNote,
   handleInputChange,
   handleInputBlur,
-  categoryColors }) => {
+  categoryColors,
+  onConfirm,
+  onCancel }) => {
 
   const [backgroundColor, setBackgroundColor] = useState(categoryColors[category.color])
 
@@ -25,7 +28,9 @@ const CategoryItem = React.memo(({
     (storedSelectedCategory && storedSelectedCategory.id === category.id
       && (isListening || storedSelectedCategory))
 
+
   return (
+
     <div className="category-style">
       <Droppable droppableId={`${category.id}`} type="notes">
         {(provided) => (
@@ -45,7 +50,7 @@ const CategoryItem = React.memo(({
               {(category && selectedCategory && selectedCategory.id === category.id) ||
                 (!isListening && category && storedSelectedCategory && storedSelectedCategory.id === category.id) ? (
                 <div className="delete-button">
-                  <button onClick={() => deleteCategory(category.id)}>
+                  <button onClick={() => deleteCategory(category.id, onConfirm, onCancel)}>
                     <img src="/ic_baseline-delete.svg" alt="info" />
                   </button>
                 </div>
