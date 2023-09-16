@@ -77,7 +77,7 @@ button:hover {
   max-width: 1500px;  
   justify-content: space-between;
   margin: 0 auto;
-  position:relative;
+  position: relative;
   }
 
     .logo img {
@@ -288,14 +288,14 @@ cursor: pointer;
   }
 
   .navbar {
-      padding: 8px 24px; 
+      padding: auto 24px; 
   }
 
-  .logo {
+  /* .logo {
   display: flex; 
   justify-content: center; 
   align-items: center; 
-}
+} */
 
   .logo img {
     height:40px;
