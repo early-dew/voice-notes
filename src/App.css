@@ -47,6 +47,7 @@ button:hover {
   visibility: hidden;
 }
 
+/* Overlay appears with alert dialog modal */
 .overlay {
   visibility: visible;
   position: fixed;
@@ -253,8 +254,6 @@ cursor: pointer;
 /* ========================================================= CATEGORIES */
 
 
-
-
 .categories-collection {
   display: grid;
   grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr) minmax(300px, 1fr) minmax(300px, 1fr);
@@ -266,7 +265,7 @@ cursor: pointer;
        }
 
 
- /* ========================================================= RESPONSIVE */      
+ /* ========================================================= RESPONSIVE LAYOUT */      
 
   @media (max-width: 1300px) {
   .categories-collection {
@@ -512,7 +511,7 @@ box-sizing: border-box;
 
 footer{
   margin-top: auto;
-  width: 100%;
+  width: 100vw;
   height: 8rem; 
   text-align: center;
   background: var(--dark-color-main);
