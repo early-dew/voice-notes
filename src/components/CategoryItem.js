@@ -22,7 +22,7 @@ const CategoryItem = React.memo(({
   onConfirm,
   onCancel }) => {
 
-  const [backgroundColor, setBackgroundColor] = useState(categoryColors[category.color])
+  const [backgroundColor] = useState(categoryColors[category.color])
 
   const hasSelectedCategory = (selectedCategory && selectedCategory.id === category.id) ||
     (storedSelectedCategory && storedSelectedCategory.id === category.id
