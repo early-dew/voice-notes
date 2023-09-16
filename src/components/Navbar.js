@@ -22,7 +22,7 @@ const Navbar = () => {
           </div>
           <div className="info-container">
             <button className="info-button" onClick={handleInfoClick}>
-              <img src="ion_information-circle-sharp.svg" alt="info" />
+              <img src="ion_information-circle-sharp-24.svg" alt="info" />
             </button>
           </div>
           {popupVisible && (

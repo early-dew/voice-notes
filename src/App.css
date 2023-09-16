@@ -65,6 +65,7 @@ button:hover {
 .navbar {
   width: 100vw;
   background-color: #ffffff;
+  height:64px;
   padding: 10px 10px 10px 10px;
   color: rgb(116, 116, 116);
   position: relative; 
@@ -79,6 +80,9 @@ button:hover {
   position:relative;
   }
 
+    .logo img {
+    height:40px;
+  }
 
 .info-container {
   position: relative;
@@ -86,8 +90,8 @@ button:hover {
 }
 
 .info-button {
-width: 48px;
-height: 48px;
+width: 36px;
+height: 36px;
 flex-shrink: 0;
 border-radius: 6px;
 border-top: 1.5px solid var(--dark-color-main);
@@ -317,8 +321,9 @@ cursor: pointer;
 }
 
 .navbar {
-  padding: 10px 16px;
-  /* height: 48px; */
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 48px;
 }
 
 .logo img {

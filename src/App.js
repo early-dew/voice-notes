@@ -14,7 +14,8 @@ if (!SpeechRecognition) {
   console.log('Web Speech API is not supported')
 }
 
-mic.continuous = true
+// mic.continuous = true
+mic.continuous = false
 mic.interimResults = true
 mic.lang = 'en-US'
 
