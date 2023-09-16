@@ -3,6 +3,7 @@ import NoteItem from './NoteItem';
 import Notification from './Notification';
 import { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
+import '../App.css';
 
 const CategoryItem = React.memo(({
   category,

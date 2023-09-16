@@ -460,7 +460,7 @@ function App() {
   // Note editing
   useEffect(() => {
 
-    // Category clickaway
+    // Note edit clickaway
     const handleClickAway = (e) => {
       if (editingNoteId !== null && !e.target.closest('.edit-input')) {
         handleInputBlur(editingNoteId)
@@ -481,16 +481,24 @@ function App() {
 
 
   return (
-    <>
-      <Navbar />
-      {showNotification && storedSelectedCategory && (
+    <div className="content">
+      {showNotification && (
         <Notification
-          message={`Are you sure you want to delete the category ${storedSelectedCategory.name.toUpperCase()}?`}
+          message={
+            <>
+              Are you sure you want to delete the category{' '}
+              <span className="bold-text">
+                {storedSelectedCategory.name}
+              </span> together with all its notes?
+            </>
+          }
           onCancel={handleCancelDelete}
           onConfirm={() => handleConfirmDelete(storedSelectedCategory.id)}
         />
       )}
-      <div className="centered">
+      {showNotification && <div className="overlay"></div>}
+      <div className="main">
+        <Navbar />
         <div className="audio-wrapper">
           <div className={`transcript-wrapper ${micTranscript ? 'active' : ''}`}>
             <div className="transcript-content">
@@ -541,7 +549,7 @@ function App() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 
 }
