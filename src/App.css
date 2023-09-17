@@ -18,6 +18,7 @@ h1 {
 h3 {
   font-family: var(--fonts-heading-category);  
   font-weight: 500;
+  text-transform: uppercase;
   }
 
 /* remove button initial style */
@@ -389,6 +390,16 @@ box-sizing: border-box;
   background: var(--fonts-background-light);
 }
 
+/* when the category name is edited */
+.edited-category-field {
+  background-color: var(--fonts-background-light);
+  border: 2px solid #000;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: var(--dark-color-main);
+  padding-left: 8px;
+}
+
 /* ========================================================= NOTES */
 
 .notes-holder{
@@ -426,7 +437,7 @@ box-sizing: border-box;
   align-items: center;
   }
 
-.delete-button{
+.category-buttons {
   text-align: right;
 }
 
@@ -445,6 +456,7 @@ box-sizing: border-box;
   font-family: var(--dark-color-main);
   padding-left: 8px;
 }
+
 
 /* ========================================================= CHECKMARK */
 

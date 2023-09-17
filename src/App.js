@@ -14,7 +14,7 @@ if (!SpeechRecognition) {
   console.log('Web Speech API is not supported')
 }
 
-// mic.continuous = true
+// mic.continuous = true - is not supported on mobile browsers
 mic.continuous = false
 mic.interimResults = true
 mic.lang = 'en-US'
@@ -25,7 +25,9 @@ function App() {
   const [isListening, setIsListening] = useState(false)
   const [savedNotes, setSavedNotes] = useState([])
   const [editingNoteId, setEditingNoteId] = useState(null)
-  const [editedContent, setEditedContent] = useState('')
+  const [editedContent, setEditedContent] = useState('') //note content editing
+  const [editedCategoryName, setEditedCategoryName] = useState(null)
+  const [editedCategoryId, setEditedCategoryId] = useState('')
   const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([])
   const [micTranscript, setMicTranscript] = useState('')
@@ -325,13 +327,10 @@ function App() {
 
     if (onConfirm) {
       handleConfirmDelete(categoryId)
-
     }
-
     if (onCancel) {
       handleCancelDelete()
     }
-
   };
 
 
@@ -384,7 +383,6 @@ function App() {
         note.id === draggedNote.id ? { ...note, categoryId: destinationCategory.id } : note
       )
     )
-
   }
 
 
@@ -410,18 +408,35 @@ function App() {
   }
 
 
+  //Category editing
+  const handleCategoryEdit = (event, categoryId, categoryName) => {
+    setEditedCategoryId(categoryId)
+    setEditedCategoryName(categoryName)
+  }
+
+  const handleCategoryChange = (event) => {
+    setEditedCategoryName(event.target.value)
+    console.log('category name -change', editedCategoryName)
+  }
+
+  const handleCategoryBlur = (categoryId) => {
+    console.log('handleCategoryBlur categoryId', categoryId)
+    if (editedCategoryName.trim() !== '') {
+      const updatedCategories = categories.map(category => category.id === categoryId ? { ...category, name: editedCategoryName } : category)
+      setCategories(updatedCategories)
+    }
+
+    setEditedCategoryId(null)
+    console.log('handleCategoryBlur', editedCategoryName)
+  }
+
+
   // Note editing
   const handleEdit = (event, noteId, noteContent) => {
     event.stopPropagation()
     setEditedContent(noteContent);
     setEditingNoteId(noteId);
-    setSavedNotes(prevSavedNotes =>
-      prevSavedNotes.map(note =>
-        note.id === noteId ? { ...note, content: editedContent } : note
-      )
-    )
   }
-
 
   const handleInputChange = (event) => {
     setEditedContent(event.target.value)
@@ -526,6 +541,12 @@ function App() {
                     category={category}
                     categories={categories}
                     deleteCategory={deleteCategory}
+                    // editCategory={editCategory}
+                    handleCategoryEdit={handleCategoryEdit}
+                    editedCategoryName={editedCategoryName}
+                    editedCategoryId={editedCategoryId}
+                    handleCategoryChange={handleCategoryChange}
+                    handleCategoryBlur={handleCategoryBlur}
                     handleEdit={handleEdit}
                     handleChecked={handleChecked}
                     removeNote={removeNote}

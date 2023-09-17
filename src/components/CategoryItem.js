@@ -13,6 +13,7 @@ const CategoryItem = React.memo(({
   editedContent,
   editingNoteId,
   deleteCategory,
+  handleCategoryEdit,
   handleEdit,
   handleChecked,
   removeNote,
@@ -20,7 +21,11 @@ const CategoryItem = React.memo(({
   handleInputBlur,
   categoryColors,
   onConfirm,
-  onCancel }) => {
+  onCancel,
+  editedCategoryName,
+  editedCategoryId,
+  handleCategoryChange,
+  handleCategoryBlur }) => {
 
   const [backgroundColor] = useState(categoryColors[category.color])
 
@@ -45,15 +50,27 @@ const CategoryItem = React.memo(({
               onClick={() => handleCategoryClick(category)}
             >
               <div className="category-header">
-                <h3>{category.name.toUpperCase()}</h3>
+                {editedCategoryId === category.id ? (
+                  <textarea className={`${editedCategoryId === category.id} ? edited-category-field : '' `}
+                    value={editedCategoryName || ''}
+                    onChange={(e) => handleCategoryChange(e)}
+                    onBlur={() => handleCategoryBlur(category.id)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') { handleCategoryBlur(category.id) } }}
+                  ></textarea>
+                ) : (<h3>{category.name}</h3>)}
               </div>
               {(category && selectedCategory && selectedCategory.id === category.id) ||
                 (!isListening && category && storedSelectedCategory && storedSelectedCategory.id === category.id) ? (
-                <div className="delete-button">
-                  <button onClick={() => deleteCategory(category.id, onConfirm, onCancel)}>
-                    <img src="/ic_baseline-delete.svg" alt="info" />
-                  </button>
-                </div>
+                <>
+                  <div className="category-buttons">
+                    <button onClick={(e) => handleCategoryEdit(e, category.id, category.name)}>
+                      <img src="/ic_round-edit.svg" alt="edit category" />
+                    </button>
+                    <button onClick={() => deleteCategory(category.id, onConfirm, onCancel)}>
+                      <img src="/ic_baseline-delete.svg" alt="info" />
+                    </button>
+                  </div>
+                </>
               ) : <div className="delete-button-placeholder"></div>}
               {category.notes
                 .map((note, index) => (
