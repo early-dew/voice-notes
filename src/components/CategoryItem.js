@@ -51,7 +51,8 @@ const CategoryItem = React.memo(({
             >
               <div className="category-header">
                 {editedCategoryId === category.id ? (
-                  <textarea className={`${editedCategoryId === category.id} ? edited-category-field : '' `}
+                  <textarea className={`category-input ${editedCategoryId === category.id ? 'editing-active' : ''}`}
+                    rows="1"
                     value={editedCategoryName || ''}
                     onChange={(e) => handleCategoryChange(e)}
                     onBlur={() => handleCategoryBlur(category.id)}
@@ -62,14 +63,16 @@ const CategoryItem = React.memo(({
               {(category && selectedCategory && selectedCategory.id === category.id) ||
                 (!isListening && category && storedSelectedCategory && storedSelectedCategory.id === category.id) ? (
                 <>
-                  <div className="category-buttons">
-                    <button onClick={(e) => handleCategoryEdit(e, category.id, category.name)}>
-                      <img src="/ic_round-edit.svg" alt="edit category" />
-                    </button>
-                    <button onClick={() => deleteCategory(category.id, onConfirm, onCancel)}>
-                      <img src="/ic_baseline-delete.svg" alt="info" />
-                    </button>
-                  </div>
+                  {editedCategoryId !== category.id && (
+                    <div className="category-buttons">
+                      <button onClick={(e) => handleCategoryEdit(e, category.id, category.name)}>
+                        <img src="/ic_round-edit.svg" alt="edit category" />
+                      </button>
+                      <button onClick={() => deleteCategory(category.id, onConfirm, onCancel)}>
+                        <img src="/ic_baseline-delete.svg" alt="info" />
+                      </button>
+                    </div>
+                  )}
                 </>
               ) : <div className="delete-button-placeholder"></div>}
               {category.notes

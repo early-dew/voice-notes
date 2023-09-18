@@ -26,7 +26,7 @@ function App() {
   const [savedNotes, setSavedNotes] = useState([])
   const [editingNoteId, setEditingNoteId] = useState(null)
   const [editedContent, setEditedContent] = useState('') //note content editing
-  const [editedCategoryName, setEditedCategoryName] = useState(null)
+  const [editedCategoryName, setEditedCategoryName] = useState('')
   const [editedCategoryId, setEditedCategoryId] = useState('')
   const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([])
@@ -410,6 +410,7 @@ function App() {
 
   //Category editing
   const handleCategoryEdit = (event, categoryId, categoryName) => {
+    event.stopPropagation()
     setEditedCategoryId(categoryId)
     setEditedCategoryName(categoryName)
   }
@@ -473,10 +474,10 @@ function App() {
   };
 
 
-  // Note editing
+  // Note edit clickaway
   useEffect(() => {
 
-    // Note edit clickaway
+
     const handleClickAway = (e) => {
       if (editingNoteId !== null && !e.target.closest('.edit-input')) {
         handleInputBlur(editingNoteId)
@@ -486,14 +487,41 @@ function App() {
       }
     };
 
-    document.addEventListener('keydown', handleKeyPress);
-    document.addEventListener('click', handleClickAway);
+    document.addEventListener('keydown', handleKeyPress)
+    document.addEventListener('click', handleClickAway)
 
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-      document.removeEventListener('click', handleClickAway);
+      document.removeEventListener('keydown', handleKeyPress)
+      document.removeEventListener('click', handleClickAway)
     };
   }, [editingNoteId, selectedCategory]);
+
+
+  // Category name edit clickaway
+  useEffect(() => {
+
+    const handleClickAwayCategoryEdit = (e) => {
+      if (editedCategoryId !== null && !e.target.closest('.category')) {
+        handleCategoryBlur(editedCategoryId);
+      }
+    };
+
+    document.addEventListener('click', handleClickAwayCategoryEdit)
+    document.addEventListener('keydown', handleKeyPressCategory)
+
+    return () => {
+      document.removeEventListener('click', handleClickAwayCategoryEdit)
+      document.removeEventListener('keydown', handleKeyPressCategory)
+    };
+  }, [editedCategoryId])
+
+
+  // Enter keystroke confirms the edited text
+  const handleKeyPressCategory = (e) => {
+    if (e.key === 'Enter' && editedCategoryId !== null) {
+      handleCategoryBlur(editedCategoryId)
+    }
+  };
 
 
   return (
